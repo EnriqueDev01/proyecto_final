@@ -26,27 +26,39 @@
 }
 .pendiente{
     border: 1px solid orange;
-    padding: 1px 6px;
+    padding: 1px 5px;
     border-radius: 10px;
-    color: orange;
-    background-color: rgb(255, 240, 212);
-    /* font-weight: bold; */
+    color: rgb(253, 168, 9);
+    background-color: rgb(255, 240, 212);    
 }
 .confirmado{
     border: 1px solid green;
-    padding: 1px 6px;
+    padding: 1px 3px;
     border-radius: 10px;
-    color: green;
+    color: rgb(2, 145, 2);
     background-color: rgb(211, 255, 211);
-    /* font-weight: bold; */
 }
 .cancelado{
     border: 1px solid red;
-    padding: 1px 6px;
+    padding: 1px 5px;
     border-radius: 10px;
-    color: red;
+    color: rgb(248, 12, 12);
     background-color: rgb(255, 212, 212);
-    /* font-weight: bold; */
 }
-
-
+.atendido{
+    border: 1px solid gray;
+    padding: 1px 5px;
+    border-radius: 10px;
+    color: rgb(128, 128, 128);
+    background-color: rgb(230, 230, 230);
+}
+.blink {
+    animation: blinker 1s step-start infinite;
+}
+@keyframes blinker {
+    50% {opacity: 0;}
+}
+.forShadow{
+    box-shadow: -5px 5px 10px 5px lightblue;
+    border-radius: 10px 0px 0px 10px;
+}

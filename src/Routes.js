@@ -14,7 +14,7 @@ function Routes() {
             <Route path="/cita/:tipo/:id?" exact component={CitaView} />            
             {/* <Route path="/cliente/" exact component={ClienteView} /> */}
             <Route path="/estilista/" exact component={EstilistaView} />
-            <Route path="/producto/" exact component={ProductoView} />
+            <Route path="/producto/:tipo?/:id?" exact component={ProductoView} />            
         </div>
     )
 }

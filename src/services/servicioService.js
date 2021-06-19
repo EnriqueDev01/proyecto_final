@@ -1,4 +1,5 @@
 import axios from "axios"
+import fire, {storage} from "../config/Firebase"
 
 const URL = `${process.env.REACT_APP_URL_API}/servicio`
 
@@ -53,9 +54,31 @@ const editarServicio = async(servicioEditado, id)=>{
 //     }
 // }
 
+const subirArchivo = (imagen) => {
+    return new Promise((resolve, reject) => {
+        let refStorage = storage.ref(`fotos/${imagen.name}`)
+        let tareaSubida = refStorage.put(imagen);
+        //comenzamos a escuchar
+        tareaSubida.on("state_changed",
+            //escuchar el progreso
+            ()=>{},
+            //manejar errores
+            (error)=>{reject(error)},
+            //me da la URL de descarga
+            ()=>{
+                tareaSubida.snapshot.ref.getDownloadURL()
+                .then((urlImagen)=>{
+                    resolve(urlImagen)
+                })
+            }
+        )
+    })
+}
+
 export{
     obtenerServicios,
     obtenerServicioPorId,
     crearServicio,
-    editarServicio
+    editarServicio,
+    subirArchivo
 }

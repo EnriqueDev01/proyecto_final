@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {obtenerEstilistas} from "../services/estilistaService"
+import {Link} from 'react-router-dom'
 
 function EstilistaView() {
     const [estilistas, setEstilistas] = useState([])
@@ -17,8 +18,16 @@ function EstilistaView() {
     }, [])
 
     return (
-        <div>
-            Estilistas
+        <div className="px-2">
+            <p className="bg-primary text-white fs-5 fw-bold py-2 my-1 rounded-3 shadow">Estilistas</p>          
+            <hr/>
+            <div className="d-flex justify-content-between my-1">                
+                <Link className="btn btn-outline-success fw-bold px-5" to={`/cita/crear`}>Crear Estilista</Link>
+            </div>            
+            {/* {loadA ? (<p>Obteniendo Informacion...</p>) : (
+                <Agenda agendas={agendas} servicios={servicios} estilistas={estilistas}/>
+            )} */}
+
             <table className="table">
                 <thead>
                     <tr>

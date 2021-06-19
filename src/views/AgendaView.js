@@ -6,6 +6,12 @@ import Agenda from '../components/Agenda'
 import {Link} from "react-router-dom"
 
 function AgendaView() {
+    //------------------------------------
+    // const history = useHistory()
+    // const reload = ()=>{
+    //     history.go(0)
+    // }
+    //-----------------------------------
     const [agendas, setAgendas] = useState([])
     const [servicios, setServicios] = useState([])
     const [estilistas, setEstilistas] = useState([])
@@ -36,20 +42,28 @@ function AgendaView() {
         }
     }
 
-    useEffect(async () => {
-        await getServicios()
-        await getEstilistas()
-        await getAgendas()
-        setLoadA(false)
+    useEffect(() => {
+        async function getAll(){
+            await getServicios()
+            await getEstilistas()
+            await getAgendas()
+            setLoadA(false)
+        } 
+        getAll()
     }, [])
 
     return (
-        <div>
-            Agenda            
-            <hr/>
-            <Link className="btn btn-success fw-bold" to={`/cita/crear`}>
-                Crear Cita
-            </Link>
+        <div className="px-2">
+            <p className="bg-primary text-white fs-5 fw-bold py-2 my-1 rounded-3 shadow">Agenda</p>          
+            <hr className="my-2"/>
+            <div className="d-flex justify-content-between my-1">
+                {/* <div className="d-flex">
+                    <input type="date" className="form-control px-5" style={{width:'220px'}}/>
+                    <button className="btn btn-outline-primary fw-bold px-5 ms-2" onClick={reload}>Buscar</button>
+                </div> */}
+                <Link className="btn btn-outline-success fw-bold px-5" to={`/cita/crear`}>Crear Cita</Link>
+            </div>
+            <hr className="my-2"/>          
             {loadA ? (<p>Obteniendo Informacion...</p>) : (
                 <Agenda agendas={agendas} servicios={servicios} estilistas={estilistas}/>
             )}            

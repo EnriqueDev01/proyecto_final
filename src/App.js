@@ -4,13 +4,13 @@ import Routes from "./Routes"
 
 function App() {
   return (
-    <div className="container d-flex text-center" style={{minWidth:'960px', width:'960px', height:'600px'}}>
+    <div className="container d-flex text-center" style={{minWidth:'1080px', width:'1080px', minHeight:'600px'}}>
       <Router>
-        <div id="panel-navegacion" className="col-2">
+        <div id="panel-navegacion" style={{width:'160px'}}>
           <Navegacion/>
         </div>
-        <div id="panel-contenido" className="col-10">
-          contenido
+        <div id="panel-contenido" style={{width:'920px'}}>
+          {/* contenido */}
           <Switch>
             <Routes />
           </Switch>

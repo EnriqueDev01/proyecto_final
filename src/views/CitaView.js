@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 function CitaView() {
     let {tipo, id} = useParams();
-    id = id ? parseInt(id) : 0
+    id = id ? parseInt(id) : 0    
     
     const [servicios, setServicios] = useState([])
     const [estilistas, setEstilistas] = useState([])
@@ -36,6 +36,7 @@ function CitaView() {
         try {            
             if (idAgenda>0) {                
                 const agendaObtenida = await obtenerAgendaPorId(idAgenda)
+                console.log("desde citaView:",agendaObtenida)
                 setAgenda(agendaObtenida)                
             }            
         } catch (error) {
@@ -79,18 +80,21 @@ function CitaView() {
         history.push("/agenda/")
     }
 
-    useEffect(async() => { 
-        await getServicios()       
-        await getEstilistas()
-        await getAgendaPorId(id)
-        setLoadC(false)            
+    useEffect(() => { 
+        async function getAll(){
+            await getServicios()       
+            await getEstilistas()
+            await getAgendaPorId(id)
+            setLoadC(false)
+        }
+        getAll()           
     }, [])
 
     return (
         <div className="container">
-            <p className="bg-primary text-white fw-bold">Cita</p>
-            <p><span className="bg-success text-white fw-bold p-2">Tipo formulario:</span> {tipo}</p>
-            <p><span className="bg-success text-white fw-bold p-2">id formulario:</span> {id} </p>
+            <p className="bg-primary text-white fw-bold py-2 mt-3 rounded-3 shadow">Cita</p>
+            {/* <p><span className="bg-success text-white fw-bold p-2">Tipo formulario:</span> {tipo}</p>
+            <p><span className="bg-success text-white fw-bold p-2">id formulario:</span> {id} </p> */}
             <hr /> 
             {loadC ? (<p>Obteniendo Informacion...</p>) : (
                 <FormCita 
